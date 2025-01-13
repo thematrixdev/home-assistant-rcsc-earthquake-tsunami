@@ -1,0 +1,20 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "description": "This is not an Earthquake Early Warning system. There will be delays in notifications.",
+        "data": {
+          "scale": "JMA Scale (1-7, can include + or -)",
+          "magnitude": "Magnitude (0-10)",
+          "notify_radius_km": "Notification radius (km)",
+          "consent": "I understand this is not an Earthquake Early Warning system and there will be delays in notifications"
+        }
+      }
+    },
+    "error": {
+      "only_one_threshold": "Please specify either Scale or Magnitude, not both",
+      "threshold_required": "Please specify either Scale or Magnitude",
+      "consent_required": "You must acknowledge the warning message"
+    }
+  }
+}
