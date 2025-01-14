@@ -196,6 +196,7 @@ class RcscEarthquakeSensor(BinarySensorEntity):
                             else:
                                 _LOGGER.debug("Earthquake too old")
                                 self._is_on = False
+                                self._attributes = {}
                         else:
                             _LOGGER.warning("Could not parse occurrence time: %s", jishin["occurrence_date"])
                             self._is_on = False
