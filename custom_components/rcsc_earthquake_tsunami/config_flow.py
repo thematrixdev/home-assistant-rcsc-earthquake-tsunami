@@ -13,17 +13,32 @@ from .const import DOMAIN, CONF_SCALE, CONF_MAGNITUDE, CONF_NOTIFY_RADIUS_KM, CO
 def validate_scale(value: str) -> str:
     """Validate the scale input."""
     try:
-        # Check format: digit followed by optional + or -
-        if not value or len(value) > 2:
-            raise ValueError("Invalid scale format")
-        base = int(value[0])
-        if not 1 <= base <= 7:
-            raise ValueError("Scale must be between 1 and 7")
-        if len(value) == 2 and value[1] not in ("+", "-"):
-            raise ValueError("Scale can only end with + or -")
-        return value
+        # Check format: digit followed by optional + or - for scales 5, 6, and 7
+        if not value:
+            raise ValueError("Scale cannot be empty")
+            
+        # Handle single digit scales (1-4)
+        if len(value) == 1:
+            base = int(value)
+            if not 1 <= base <= 7:
+                raise ValueError("Scale must be between 1 and 7")
+            return value
+            
+        # Handle scales with + or - (only valid for 5, 6, 7)
+        if len(value) == 2:
+            base = int(value[0])
+            modifier = value[1]
+            
+            if base not in (5, 6, 7):
+                raise ValueError("Only scales 5, 6, and 7 can have + or - modifiers")
+            if modifier not in ("+", "-"):
+                raise ValueError("Scale can only end with + or -")
+            
+            return value
+            
+        raise ValueError("Invalid scale format")
     except ValueError as err:
-        raise vol.Invalid("Invalid scale value. Must be a number 1-7 with optional + or - (e.g., 5, 5+, 5-)") from err
+        raise vol.Invalid("Invalid scale value. Must be a number 1-7. Only scales 5, 6, and 7 can have + or - modifiers (e.g., 5+, 6-, 7)") from err
 
 def validate_magnitude(value: str) -> float:
     """Validate the magnitude input."""

@@ -24,7 +24,9 @@
 During setup, you'll need to configure the following parameters:
 
 1. **Notification Criteria** (Required - Choose one):
-   - **JMA Scale**: Set a minimum JMA seismic intensity scale (e.g., "3", "4", "5-", "5+", "6-", "6+", "7")
+   - **JMA Scale**: Set a minimum JMA seismic intensity scale
+     - For scales 1-4: Enter as single digits (e.g., "1", "2", "3", "4")
+     - For scales 5-7: Can use + or - modifiers (e.g., "5-", "5+", "6-", "6+", "7")
    - **Magnitude**: Set a minimum earthquake magnitude (e.g., 4.0, 5.0, 6.0)
 
 2. **Notify Radius** (Optional):
